@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+/* Colores de Refacciones Victorino: los mismos que usa frontend-interno (verde principal, rojo de acento). */
+@theme {
+  --color-marca-50: #f3faf5;
+  --color-marca-100: #e4f3e8;
+  --color-marca-200: #c3e3cc;
+  --color-marca-500: #2e9b4f;
+  --color-marca-600: #16733a;
+  --color-marca-700: #0f5a2c;
+  --color-marca-800: #0b3d1f;
+
+  --color-acento: #b42318;
+  --color-acento-50: #fdf0ef;
+
+  --color-tinta: #16211a;
+  --color-tenue: #4b5a50;
+  --color-linea: #e2e8e4;
+  --color-fondo: #f4f6f5;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-fondo font-sans text-tinta antialiased;
+}
