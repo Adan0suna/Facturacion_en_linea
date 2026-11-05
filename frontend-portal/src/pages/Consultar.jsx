@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { Search } from 'lucide-react'
 import { buscarFactura } from '../api/portal'
+import { modoSimulado } from '../api/portal'
 import { SUCURSALES, nombreSucursal } from '../lib/catalogosSat'
 import { normalizarRfc, validarFolio, validarRfc } from '../lib/validaciones'
 import { Alerta, Boton, Campo, Tarjeta } from '../components/ui'
 import { claseEntrada, propsAccesibles } from '../lib/estilos'
 import DescargasFactura from '../components/DescargasFactura'
+import PanelSimulado from '../components/PanelSimulado'
 
 export default function Consultar() {
   const { state } = useLocation()
@@ -23,6 +25,10 @@ export default function Consultar() {
   function cambiar(campo, valor) {
     setDatos((d) => ({ ...d, [campo]: valor }))
     if (errores[campo]) setErrores((e) => ({ ...e, [campo]: null }))
+  }
+
+  function autoRellenarConsulta(t) {
+    setDatos({ sucursal: t.sucursal, folio: t.folio, rfc: t.rfcFacturado ?? '' })
   }
 
   async function enviar(evento) {
@@ -53,6 +59,9 @@ export default function Consultar() {
 
   return (
     <div className="space-y-6">
+      {modoSimulado && (
+        <PanelSimulado onAutoRellenarConsulta={autoRellenarConsulta} />
+      )}
       <Tarjeta>
         <form onSubmit={enviar} noValidate className="space-y-5">
           <div>
